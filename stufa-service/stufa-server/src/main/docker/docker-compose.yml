@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  stufa-service:
+    image: 'stufa-server:latest'
+    build:
+      context: .
+    container_name: stufa-service
+    depends_on:
+      - stufe-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stufe-db:5432/stufe-db
+      - SPRING_DATASOURCE_USERNAME=stufe-db
+      - SPRING_DATASOURCE_PASSWORD=stufe-db
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  stufe-db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=stufe-db
+      - POSTGRES_PASSWORD=stufe-db

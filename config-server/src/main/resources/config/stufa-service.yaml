@@ -1,0 +1,30 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/stufe-db
+    username: postgres
+    password: admin
+    initialization-mode: always
+    initialize: true
+    continue-on-error: true
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
